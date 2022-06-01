@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API TEST</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 1440px;
+        margin: 0 auto;
+    }
+
+    .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        flex-grow: 1;
+        width: 1330px;
+    }
+
+    .col {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    #a-1,
+    #a-2,
+    #a-3,
+    #a-4,
+    #a-5,
+    #a-6 {
+        width: 18rem;
+        background-color: rgb(32, 75, 228);
+        height: 120px;
+        margin: 10px 5px;
+        color: #fff;
+        font-size: 1.3rem;
+        padding: 5px 10px;
+    }
+
+    #a-1 {
+        background-color: #f05053;
+    }
+
+    #a-2 {
+        background-color: #22c1c3;
+    }
+
+    #a-3 {
+        background-color: #EF3B36;
+    }
+
+    #a-4 {
+        background-color: #d9402f;
+    }
+
+    #a-6 {
+        background-color: #c0392b;
+    }
+
+    #show_data {
+        background-color: #e8e2e2ca;
+        box-shadow: 0 10px 20px #073646af;
+        width: 67%;
+        margin: 10px auto;
+        padding: 20px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    #show_data>#country {
+        width: 500px;
+        height: 50px;
+        border-top: none;
+        background: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 5px solid #fff;
+        transition: .3s ease-out all;
+        font-size: 2rem;
+        color: #d62063;
+    }
+
+    #show_data>#country::placeholder {
+        font-size: 1.2rem;
+        text-align: center;
+        font-family: monospace;
+        letter-spacing: 3px;
+        color: #073646af;
+    }
+
+    #show_data>#country:hover,
+    #show_data>#country:active,
+    #show_data>#country:focus {
+        outline: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 5px solid rgb(17, 139, 253);
+        transition: .3s ease-out all;
+    }
+
+    #Search {
+        margin: 10px 5px;
+        width: 150px;
+        padding: 20px 10px;
+        border: none;
+        background-color: #1CB5E0;
+        color: #fff;
+        font-size: 1.3rem;
+        cursor: pointer;
+        transition: .3s ease-out all;
+    }
+
+    #Search:hover {
+        background-color: #0d647caf;
+    }
+    p i{
+        padding: 2px 3px;
+        font-size: 1.5rem;
+        margin: 3px 5px;
+    }
+    #Validation{
+        color: red;
+        font-size: 2rem;
+        font-family: monospace;
+        letter-spacing: 3px;
+        font-weight: 300;
+    }
+    footer p{
+        color: #073646af;
+        font-size: 2rem;
+        font-family: monospace;
+    }
+
+    @media screen and (max-width: 420px){
+        .col{
+            grid-template-columns: repeat(1, 1fr);
+        }
+        .container{
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            width: 95%;
+            margin: 0;
+        }
+        .row{
+            width: 365px;
+        }
+        #show_data{
+            width: 300px;
+        }
+        #show_data>#country{
+            width: 300px;
+        }
+        #Validation{
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+
+<body>
+    <div class="container">
+        <div class="row">
+            <p id="Validation"></p>
+            <div id="show_data">
+                <input type="search" class="name" id="country" placeholder="Name of your Country">
+                <button id="Search">Serach</button>
+            </div>
+        </div>
+        <div class="row">
+            <div id="box" class="col">
+                <div id="a-1">
+                    <span id="newCases"></span>
+                    <p><i class="fa-solid fa-virus-covid"></i>New Cases</p>
+                </div>
+                <div id="a-2">
+                    <span id="recovery"></span>
+                    <p><i class="fa-solid fa-head-side-mask"></i>New Recovery</p>
+                </div>
+                <div id="a-3">
+                    <span id="death"></span>
+                    <p><i class="fa-solid fa-virus-covid-slash"></i>New Death</p>
+                </div>
+                <div id="a-4">
+                    <span id="total"></span>
+                    <p><i class="fa-solid fa-viruses"></i>Total Cases</p>
+                </div>
+                <div id="a-5">
+                    <span id="totalRecovery"></span>
+                    <p><i class="fa-solid fa-shield-virus"></i>Total Recovery</p>
+                </div>
+                <div id="a-6">
+                    <span id="total_death"></span>
+                    <p><i class="fa-solid fa-lungs-virus"></i>Total Death</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2022</p>
+    </footer>
+
+    <script src="api.js"></script>
+</body>
+
+</html>
